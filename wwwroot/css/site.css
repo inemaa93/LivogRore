@@ -1,3 +1,22 @@
+/* Font updates */
+h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.text-content {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #333;
+  /*background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);*/
+}
+
+/* Other */
+
 html {
   font-size: 14px;
 }
@@ -18,5 +37,116 @@ html {
 }
 
 body {
+  background: -moz-linear-gradient(to bottom, #f8f9fa, #ffffff);
   margin-bottom: 60px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.grid-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  gap: 20px;
+  align-items: center; /* Align items in the center */
+}
+
+.text-content {
+  max-width: 80%;
+  width: 100%;
+  text-align: justify;
+}
+
+.image-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-content img {
+  width: 150%;
+  max-width: 600px; /* Adjust width without exceeding container */
+  height: auto; /* Maintain aspect ratio */
+  display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .grid-layout {
+    grid-template-columns: 1fr; /* Stack on small screens */
+    text-align: center;
+  }
+
+  .text-content {
+    text-align: center;
+  }
+
+  .image-content img {
+    max-width: 400px;
+    height: auto;
+    filter: drop-shadow(3px 3px 10px rgba(0, 0, 0, 0.1)); /* Subtle shadow */
+  }
+}
+
+/* Knapp fuksjoner */
+
+.button-group {
+  margin-top: 20px; /* Adds space between text and buttons */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  /* gap: 15px; */ /* Spacing between buttons */
+}
+
+.button-group .btn {
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.3s ease-in-out;
+  display: inline-block;
+}
+
+/* Sign Up Button - Primary Style */
+.signup-btn {
+  background-color: #007bff;
+  color: white;
+  border: 2px solid #007bff;
+}
+
+.signup-btn:hover {
+  background-color: white;
+  color: #007bff;
+  border: 2px solid #007bff;
+}
+
+/* More Info Button - Secondary Style */
+.info-btn {
+  background-color: #6c757d;
+  color: white;
+  border: 2px solid #6c757d;
+}
+
+.info-btn:hover {
+  background-color: white;
+  color: #6c757d;
+  border: 2px solid #6c757d;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .button-group {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .button-group .btn {
+    width: 100%; /* Make buttons full-width on small screens */
+    text-align: center;
+  }
 }

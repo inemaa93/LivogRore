@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LivogRøre")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1267818d63d4a069b035f367c2366df450fd89e1")]
 [assembly: System.Reflection.AssemblyProductAttribute("LivogRøre")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LivogRøre")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
