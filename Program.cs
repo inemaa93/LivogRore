@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using LivogRøre.Data;
+using LivogRøre.Models;
+using Microsoft.Extensions.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +17,31 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+// Call the database initializer
+using (var services = app.Services.CreateScope())
+{
+    var db = services.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    ApplicationDbInitializer.Initialize(db);
+}
+
+// Create an admin user that exists at startup (modify this with roles later!!)
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    // var dbContext = services.GetRequiredService<ApplicationDbContext>();
+    var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
+
+    string adminEmail = "admin@gmail.com";
+    string adminPassword = "Password!1";
+
+    var adminUser = await userManager.FindByEmailAsync(adminEmail);
+    if (adminUser == null)
+    {
+        adminUser = new IdentityUser() { UserName = adminEmail, Email = adminEmail, EmailConfirmed = true };
+        var result = await userManager.CreateAsync(adminUser, adminPassword);
+    }
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using LivogRøre.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace LivogRøre.Data;
 
@@ -9,4 +11,7 @@ public class ApplicationDbContext : IdentityDbContext
         : base(options)
     {
     }
+    
+    public DbSet<Models.User> AppUsers { get; set; }
+    
 }
