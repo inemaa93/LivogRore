@@ -15,8 +15,47 @@
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.13" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.13" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.13">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.13" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.4" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="backend\Views\Home\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="backend\Views\Home\Privacy.cshtml" />
+    <_ContentIncludedByDefault Remove="backend\Views\Shared\Error.cshtml" />
+    <_ContentIncludedByDefault Remove="backend\Views\Shared\_Layout.cshtml" />
+    <_ContentIncludedByDefault Remove="backend\Views\Shared\_LoginPartial.cshtml" />
+    <_ContentIncludedByDefault Remove="backend\Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <_ContentIncludedByDefault Remove="backend\Views\_ViewImports.cshtml" />
+    <_ContentIncludedByDefault Remove="backend\Views\_ViewStart.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Home\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Home\Privacy.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Shared\Error.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Shared\_Layout.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Shared\_LoginPartial.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\_ViewImports.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\_ViewStart.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\Identity\Pages\_ViewStart.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="Areas\Identity\Pages\_ViewStart.cshtml" />
+    <AdditionalFiles Include="Views\Home\Index.cshtml" />
+    <AdditionalFiles Include="Views\Home\Privacy.cshtml" />
+    <AdditionalFiles Include="Views\Shared\Error.cshtml" />
+    <AdditionalFiles Include="Views\Shared\_Layout.cshtml" />
+    <AdditionalFiles Include="Views\Shared\_LoginPartial.cshtml" />
+    <AdditionalFiles Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <AdditionalFiles Include="Views\_ViewImports.cshtml" />
+    <AdditionalFiles Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
 
 </Project>
