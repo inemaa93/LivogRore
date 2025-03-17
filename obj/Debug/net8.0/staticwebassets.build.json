@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "CzOOIXoY/zd7XWHOd2VZ5ToAi/9QXVop5OgpP8yqfCM=",
+  "Hash": "HglOPxfhMOdT/0GlTZeefkHiRx95GuhRnBI4Zb1Izkg=",
   "Source": "LivogRøre",
   "BasePath": "_content/LivogRøre",
   "Mode": "Default",
@@ -1214,6 +1214,25 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
+      "Identity": "C:\\Users\\inaaa\\LivogRore\\wwwroot\\css\\styles.css",
+      "SourceId": "LivogRøre",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\inaaa\\LivogRore\\wwwroot\\",
+      "BasePath": "_content/LivogRøre",
+      "RelativePath": "css/styles.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\styles.css"
+    },
+    {
       "Identity": "C:\\Users\\inaaa\\LivogRore\\wwwroot\\favicon.ico",
       "SourceId": "LivogRøre",
       "SourceType": "Discovered",
@@ -2352,6 +2371,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\livogrøre.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\inaaa\\LivogRore\\wwwroot\\scripts\\scripts.js",
+      "SourceId": "LivogRøre",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\inaaa\\LivogRore\\wwwroot\\",
+      "BasePath": "_content/LivogRøre",
+      "RelativePath": "scripts/scripts.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\scripts\\scripts.js"
     }
   ]
 }

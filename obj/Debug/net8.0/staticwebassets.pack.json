@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "C:\\Users\\inaaa\\LivogRore\\wwwroot\\css\\styles.css",
+      "PackagePath": "staticwebassets\\css\\styles.css"
+    },
+    {
       "Id": "C:\\Users\\inaaa\\LivogRore\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
@@ -247,6 +251,10 @@
     {
       "Id": "C:\\Users\\inaaa\\LivogRore\\wwwroot\\livogrøre.jpg",
       "PackagePath": "staticwebassets\\livogrøre.jpg"
+    },
+    {
+      "Id": "C:\\Users\\inaaa\\LivogRore\\wwwroot\\scripts\\scripts.js",
+      "PackagePath": "staticwebassets\\scripts\\scripts.js"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.LivogRøre.Microsoft.AspNetCore.StaticWebAssets.props",
