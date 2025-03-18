@@ -13,6 +13,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>() //Added to support roles for different users
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
@@ -29,17 +30,28 @@ using (var services = app.Services.CreateScope())
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
-    // var dbContext = services.GetRequiredService<ApplicationDbContext>();
     var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
+    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
 
     string adminEmail = "admin@gmail.com";
     string adminPassword = "Password!1";
+    string adminRole = "Admin";
+    
+    if (!await roleManager.RoleExistsAsync(adminRole))
+    {
+        await roleManager.CreateAsync(new IdentityRole(adminRole));
+    }
 
     var adminUser = await userManager.FindByEmailAsync(adminEmail);
     if (adminUser == null)
     {
         adminUser = new IdentityUser() { UserName = adminEmail, Email = adminEmail, EmailConfirmed = true };
         var result = await userManager.CreateAsync(adminUser, adminPassword);
+    }
+
+    if (!await userManager.IsInRoleAsync(adminUser, adminRole))
+    {
+        await userManager.AddToRoleAsync(adminUser, adminRole);
     }
 }
 
