@@ -1,6 +1,32 @@
+@model List<LivogRøre.Models.Event>
+
 @{
     ViewBag.Title = "Velkommen tilbake!";
 }
 
 <h2>Dashbordet til nettsiden</h2>
 <p>Legg til nettside funksjonalitet her!</p>
+
+
+@if (Model != null && Model.Any())
+{
+    <h4>Kommende arrangementer:</h4>
+    <ul class="list-group">
+        @foreach (var e in Model)
+        {
+            <li class="list-group-item mb-2">
+                <strong>@e.Title</strong><br />
+                <small>@e.Date.ToString("dd.MM.yyyy")</small><br />
+                @if (!string.IsNullOrWhiteSpace(e.Description))
+                {
+                    <p>@e.Description</p>
+                }
+                <span class="text-muted">Opprettet av: @e.CreatedBy</span>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>Ingen eventer er publisert ennå.</p>
+}

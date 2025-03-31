@@ -1,19 +1,38 @@
+@model LivogRøre.Models.Event
 
 @{
-    ViewBag.Title = "title";
+    ViewData["Title"] = "Lag ny event";
 }
 
-<h2>Lag ny event</h2>
+<h2>@ViewData["Title"]</h2>
 
-<form>
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+
+<form asp-action="CreateEvent" method="post">
     <div class="form-group">
-        <label>Event Name</label>
-        <input type="text" class ="form-control" />
+        <label asp-for="Title"></label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
     </div>
+
     <div class="form-group mt-3">
-        <label>Date</label>
-        <input type="date" class="form-control" />
+        <label asp-for="Date"></label>
+        <input asp-for="Date" class="form-control" />
+        <span asp-validation-for="Date" class="text-danger"></span>
     </div>
-    
+
+    <div class="form-group mt-3">
+        <label asp-for="Description">Beskrivelse</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
     <button type="submit" class="btn btn-primary mt-3">Lag Event</button>
 </form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
