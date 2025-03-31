@@ -12,7 +12,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false) // Changed this to false to avoid email confirmation for now
     .AddRoles<IdentityRole>() //Added to support roles for different users
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
@@ -26,34 +26,41 @@ using (var services = app.Services.CreateScope())
     ApplicationDbInitializer.Initialize(db);
 }
 
-// Create an admin user that exists at startup (modify this with roles later!!)
+// Create roles and the admin user at startup
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
 
+    string[] roles = new[] { "Admin", "User", "Company" };
+
+    // ✅ Ensure all roles exist
+    foreach (var role in roles)
+    {
+        if (!await roleManager.RoleExistsAsync(role))
+        {
+            await roleManager.CreateAsync(new IdentityRole(role));
+        }
+    }
+
+    // ✅ Create default admin user
     string adminEmail = "admin@gmail.com";
     string adminPassword = "Password!1";
-    string adminRole = "Admin";
-    
-    if (!await roleManager.RoleExistsAsync(adminRole))
-    {
-        await roleManager.CreateAsync(new IdentityRole(adminRole));
-    }
 
     var adminUser = await userManager.FindByEmailAsync(adminEmail);
     if (adminUser == null)
     {
-        adminUser = new IdentityUser() { UserName = adminEmail, Email = adminEmail, EmailConfirmed = true };
+        adminUser = new IdentityUser { UserName = adminEmail, Email = adminEmail, EmailConfirmed = true };
         var result = await userManager.CreateAsync(adminUser, adminPassword);
     }
 
-    if (!await userManager.IsInRoleAsync(adminUser, adminRole))
+    if (!await userManager.IsInRoleAsync(adminUser, "Admin"))
     {
-        await userManager.AddToRoleAsync(adminUser, adminRole);
+        await userManager.AddToRoleAsync(adminUser, "Admin");
     }
 }
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

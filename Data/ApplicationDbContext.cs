@@ -12,6 +12,10 @@ public class ApplicationDbContext : IdentityDbContext
     {
     }
     
-    public DbSet<Models.User> AppUsers { get; set; }
+    public DbSet<User> AppUsers { get; set; }
+    public DbSet<Company> Companies { get; set; }
+    //public DbSet<Event> Events { get; set; }
+    
+    //public DbSet<Models.User> AppUsers { get; set; }
     
 }

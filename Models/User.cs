@@ -19,5 +19,5 @@ public class User
     public string LastName { get; set; } = string.Empty;
 
     [DataType(DataType.Date)] // Force the field to only require date, not including time
-    public string? DateTime { get; set; }
+    public DateTime? DateOfBirth { get; set; }
 }
