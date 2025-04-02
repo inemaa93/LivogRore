@@ -1,0 +1,41 @@
+@{
+    ViewBag.Title = "title";
+}
+
+
+@model List<Microsoft.AspNetCore.Identity.IdentityUser>
+
+@{
+    ViewData["Title"] = "User Management";
+}
+
+<h1>User Management</h1>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-info">@TempData["Message"]</div>
+}
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Email</th>
+        <th>Username</th>
+        <th>Add role</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.Email</td>
+            <td>@user.UserName</td>
+            <td>
+                <a class="btn btn-primary" asp-controller="AdminPage" asp-action="AssignUserRole" asp-route-email="@user.Email">
+                    Add role
+                </a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
