@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\LivogRøre.v7fa2mhzux.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\Livogrøre_logo.png",
+      "PackagePath": "staticwebassets\\Livogrøre_logo.png"
+    },
+    {
       "Id": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -15,6 +19,26 @@
     {
       "Id": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\images\\0c80e110-b1a4-4f72-99cf-40982922d595.jpg",
+      "PackagePath": "staticwebassets\\images\\0c80e110-b1a4-4f72-99cf-40982922d595.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\images\\52fcb798-92ee-4fd4-9b0e-ff9f6389b9ff.jpg",
+      "PackagePath": "staticwebassets\\images\\52fcb798-92ee-4fd4-9b0e-ff9f6389b9ff.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\images\\5bfbea75-aef4-4e8f-91e3-7cc99ac1cc9c.jpg",
+      "PackagePath": "staticwebassets\\images\\5bfbea75-aef4-4e8f-91e3-7cc99ac1cc9c.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\images\\7acb7c57-55f9-4a2e-8190-7f0c02a33114.jpg",
+      "PackagePath": "staticwebassets\\images\\7acb7c57-55f9-4a2e-8190-7f0c02a33114.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\images\\aaf32eae-7d44-4a4f-a044-ffaa54bcb942.jpg",
+      "PackagePath": "staticwebassets\\images\\aaf32eae-7d44-4a4f-a044-ffaa54bcb942.jpg"
     },
     {
       "Id": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\js\\site.js",
@@ -251,6 +275,10 @@
     {
       "Id": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\livogrøre.jpg",
       "PackagePath": "staticwebassets\\livogrøre.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\lor.png",
+      "PackagePath": "staticwebassets\\lor.png"
     },
     {
       "Id": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\scripts\\scripts.js",

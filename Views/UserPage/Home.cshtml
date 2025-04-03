@@ -5,8 +5,18 @@
 }
 
 <h2>Dashbordet til nettsiden</h2>
-<p>Legg til nettside funksjonalitet her!</p>
 
+<p><strong>Rollene dine:</strong></p>
+<ul>
+    @if (User.IsInRole("Admin")) { <li>Admin</li> }
+    @if (User.IsInRole("Company")) { <li>Company</li> }
+    @if (User.IsInRole("User")) { <li>User</li> }
+</ul>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
 
 @if (Model != null && Model.Any())
 {
@@ -14,14 +24,25 @@
     <ul class="list-group">
         @foreach (var e in Model)
         {
-            <li class="list-group-item mb-2">
-                <strong>@e.Title</strong><br />
-                <small>@e.Date.ToString("dd.MM.yyyy")</small><br />
-                @if (!string.IsNullOrWhiteSpace(e.Description))
-                {
-                    <p>@e.Description</p>
-                }
-                <span class="text-muted">Opprettet av: @e.CreatedBy</span>
+            <li class="list-group-item mb-4 p-3">
+                <div class="d-flex align-items-center justify-content-between" style="min-height: 160px;">
+                    <div class="me-4 flex-grow-1">
+                        <strong>@e.Title</strong><br />
+                        <small>@e.Date.ToString("dd.MM.yyyy")</small><br />
+                        @if (!string.IsNullOrWhiteSpace(e.Description))
+                        {
+                            <p class="mt-2">@e.Description</p>
+                        }
+                        <span class="text-muted">Opprettet av: @e.CreatedBy</span>
+                    </div>
+
+                    @if (!string.IsNullOrWhiteSpace(e.ImagePath))
+                    {
+                        <img src="@e.ImagePath"
+                             alt="Bilde for @e.Title"
+                             style="height: 150px; width: auto; border-radius: 6px;" />
+                    }
+                </div>
             </li>
         }
     </ul>
@@ -30,3 +51,14 @@ else
 {
     <p>Ingen eventer er publisert ennå.</p>
 }
+
+<hr />
+
+@if (User.IsInRole("User") && !User.IsInRole("Company"))
+{
+    <form asp-action="BecomeCompany" asp-controller="Company" method="post">
+        <button type="submit" class="btn btn-warning">Bli en bedrift</button>
+    </form>
+}
+
+
