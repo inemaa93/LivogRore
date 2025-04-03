@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "e5Cv/RO2HGschZ0Ih0Q4+s0/5OU/SKVBnYMRQ+tE40g=",
+  "Hash": "xRVUJkxG9aAP5vBri5tJBmQ8DCQQmsNKQWWwN3Smed0=",
   "Source": "LivogRøre",
   "BasePath": "_content/LivogRøre",
   "Mode": "Default",
@@ -1340,6 +1340,27 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
+      "Identity": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\css\\styles.css",
+      "SourceId": "LivogRøre",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\",
+      "BasePath": "_content/LivogRøre",
+      "RelativePath": "css/styles#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "kadedcxsvu",
+      "Integrity": "NNiRiiZ1MdXYbDRpCdlZf0pNiBNGGOsvFvVKkUcbw9M=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\styles.css"
+    },
+    {
       "Identity": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\favicon.ico",
       "SourceId": "LivogRøre",
       "SourceType": "Discovered",
@@ -2598,6 +2619,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\livogrøre.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\scripts\\scripts.js",
+      "SourceId": "LivogRøre",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\",
+      "BasePath": "_content/LivogRøre",
+      "RelativePath": "scripts/scripts#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "krckdcooxe",
+      "Integrity": "oNoDz2NWjMwNJ49cF1gbs3Xdm1XaXqbJGtA882Oqryk=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\scripts\\scripts.js"
     }
   ],
   "Endpoints": [
@@ -2680,6 +2722,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-0/73gKQGedVDVYorP6/nTZl8Ha55W9ouJPguLSbr5jY="
+        }
+      ]
+    },
+    {
+      "Route": "css/styles.css",
+      "AssetFile": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\css\\styles.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "419"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"NNiRiiZ1MdXYbDRpCdlZf0pNiBNGGOsvFvVKkUcbw9M=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 03 Apr 2025 07:12:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-NNiRiiZ1MdXYbDRpCdlZf0pNiBNGGOsvFvVKkUcbw9M="
+        }
+      ]
+    },
+    {
+      "Route": "css/styles.kadedcxsvu.css",
+      "AssetFile": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\css\\styles.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "419"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"NNiRiiZ1MdXYbDRpCdlZf0pNiBNGGOsvFvVKkUcbw9M=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 03 Apr 2025 07:12:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "kadedcxsvu"
+        },
+        {
+          "Name": "label",
+          "Value": "css/styles.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-NNiRiiZ1MdXYbDRpCdlZf0pNiBNGGOsvFvVKkUcbw9M="
         }
       ]
     },
@@ -5008,7 +5132,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 12 Mar 2025 12:12:11 GMT"
+          "Value": "Thu, 03 Apr 2025 07:12:44 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5053,7 +5177,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 12 Mar 2025 12:12:11 GMT"
+          "Value": "Thu, 03 Apr 2025 07:12:44 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -9984,6 +10108,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-Ol/m825DU3wykdo+DKnVNEbBIscm9fbg1IyFHs/XP88="
+        }
+      ]
+    },
+    {
+      "Route": "scripts/scripts.js",
+      "AssetFile": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\scripts\\scripts.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "830"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"oNoDz2NWjMwNJ49cF1gbs3Xdm1XaXqbJGtA882Oqryk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 03 Apr 2025 07:12:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-oNoDz2NWjMwNJ49cF1gbs3Xdm1XaXqbJGtA882Oqryk="
+        }
+      ]
+    },
+    {
+      "Route": "scripts/scripts.krckdcooxe.js",
+      "AssetFile": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\scripts\\scripts.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "830"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"oNoDz2NWjMwNJ49cF1gbs3Xdm1XaXqbJGtA882Oqryk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 03 Apr 2025 07:12:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "krckdcooxe"
+        },
+        {
+          "Name": "label",
+          "Value": "scripts/scripts.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-oNoDz2NWjMwNJ49cF1gbs3Xdm1XaXqbJGtA882Oqryk="
         }
       ]
     }

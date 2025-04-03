@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using LivogRøre.Data;
 using Microsoft.CodeAnalysis;
 
-namespace LivogRøre.Controllers;
+namespace LivogRøre.backend.Controllers;
 
 public class HomeController : Controller
 {
