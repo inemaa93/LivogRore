@@ -54,6 +54,96 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\favicon.ico'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\0c80e110-b1a4-4f72-99cf-40982922d595.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>LivogRøre</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/LivogRøre</BasePath>
+      <RelativePath>images/0c80e110-b1a4-4f72-99cf-40982922d595.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>3ncqowl98q</Fingerprint>
+      <Integrity>f+paDxD/WNN3zoLmALqaPECZhdp8FHOdgrCYOMn4ieE=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\0c80e110-b1a4-4f72-99cf-40982922d595.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\52fcb798-92ee-4fd4-9b0e-ff9f6389b9ff.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>LivogRøre</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/LivogRøre</BasePath>
+      <RelativePath>images/52fcb798-92ee-4fd4-9b0e-ff9f6389b9ff.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>3ncqowl98q</Fingerprint>
+      <Integrity>f+paDxD/WNN3zoLmALqaPECZhdp8FHOdgrCYOMn4ieE=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\52fcb798-92ee-4fd4-9b0e-ff9f6389b9ff.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\5bfbea75-aef4-4e8f-91e3-7cc99ac1cc9c.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>LivogRøre</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/LivogRøre</BasePath>
+      <RelativePath>images/5bfbea75-aef4-4e8f-91e3-7cc99ac1cc9c.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>3ncqowl98q</Fingerprint>
+      <Integrity>f+paDxD/WNN3zoLmALqaPECZhdp8FHOdgrCYOMn4ieE=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\5bfbea75-aef4-4e8f-91e3-7cc99ac1cc9c.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\7acb7c57-55f9-4a2e-8190-7f0c02a33114.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>LivogRøre</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/LivogRøre</BasePath>
+      <RelativePath>images/7acb7c57-55f9-4a2e-8190-7f0c02a33114.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>oab07dfsmy</Fingerprint>
+      <Integrity>MOQMuKvMN08eC3CTwPdQafcAnjy8AVjMgdNeNXG3aQI=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\7acb7c57-55f9-4a2e-8190-7f0c02a33114.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\aaf32eae-7d44-4a4f-a044-ffaa54bcb942.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>LivogRøre</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/LivogRøre</BasePath>
+      <RelativePath>images/aaf32eae-7d44-4a4f-a044-ffaa54bcb942.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>3ncqowl98q</Fingerprint>
+      <Integrity>f+paDxD/WNN3zoLmALqaPECZhdp8FHOdgrCYOMn4ieE=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\aaf32eae-7d44-4a4f-a044-ffaa54bcb942.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\site.js'))">
       <SourceType>Package</SourceType>
       <SourceId>LivogRøre</SourceId>

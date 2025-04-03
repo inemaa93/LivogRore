@@ -11,7 +11,7 @@
     <div class="alert alert-success">@TempData["Message"]</div>
 }
 
-<form asp-action="CreateEvent" method="post">
+<form asp-action="CreateEvent" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label asp-for="Title"></label>
         <input asp-for="Title" class="form-control" />
@@ -28,6 +28,11 @@
         <label asp-for="Description">Beskrivelse</label>
         <textarea asp-for="Description" class="form-control"></textarea>
         <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mt-3">
+        <label for="Image">Last opp et bilde</label>
+        <input type="file" name="Image" class="form-control" />
     </div>
 
     <button type="submit" class="btn btn-primary mt-3">Lag Event</button>

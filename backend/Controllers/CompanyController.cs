@@ -31,14 +31,32 @@ namespace LivogRøre.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Company,Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateEvent(Event model)
+        public async Task<IActionResult> CreateEvent(Event model, IFormFile? Image)
         {
             if (ModelState.IsValid)
             {
                 var user = await _userManager.GetUserAsync(User);
                 model.CreatedBy = user?.Email ?? "Unknown";
+
+                // Handle image upload if present
+                if (Image != null && Image.Length > 0)
+                {
+                    var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
+                    Directory.CreateDirectory(uploadsFolder); // ensure the folder exists
+
+                    var uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(Image.FileName);
+                    var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await Image.CopyToAsync(stream);
+                    }
+
+                    model.ImagePath = "/images/" + uniqueFileName;
+                }
 
                 _context.Events.Add(model);
                 await _context.SaveChangesAsync();
@@ -49,7 +67,7 @@ namespace LivogRøre.Controllers
 
             return View(model);
         }
-        
+
         [Authorize]
         [HttpPost]
         public async Task<IActionResult> BecomeCompany()
@@ -67,7 +85,7 @@ namespace LivogRøre.Controllers
                 if (!await _userManager.IsInRoleAsync(user, "Company"))
                 {
                     await _userManager.AddToRoleAsync(user, "Company");
-                    
+
                     await HttpContext.SignOutAsync(IdentityConstants.ApplicationScheme);
                     await _signInManager.SignInAsync(user, isPersistent: false);
 
@@ -77,6 +95,5 @@ namespace LivogRøre.Controllers
 
             return RedirectToAction("UserHome", "Home");
         }
-
     }
 }
