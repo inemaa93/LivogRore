@@ -1,6 +1,7 @@
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
+    background-color: #51518e;
 }
 
 form {
@@ -18,14 +19,30 @@ input {
     width: 100%;
 }
 
-button {
+/*button {
     padding: 10px;
     background-color: #4CAF50;
     color: white;
     border: none;
     cursor: pointer;
+}*/
+
+.button {
+    background-color: #FFC107;
+    color: #000;
+    border: none;
+    text-decoration: none; /* Blir kvitt linjene under teksten i knappene */
+    padding: 12px 24px;
+    margin: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    transition: box-shadow 0.2s, background-color 0.2s;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #e6ac00;
+    transform: scale(1.05);
 }

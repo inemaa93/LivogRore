@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "xRVUJkxG9aAP5vBri5tJBmQ8DCQQmsNKQWWwN3Smed0=",
+  "Hash": "nfmlZ0eEGOY6kYZmlz/mLiuSaXmyAZiakK0xUmTzvz8=",
   "Source": "LivogRøre",
   "BasePath": "_content/LivogRøre",
   "Mode": "Default",
@@ -1333,8 +1333,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "v1hq6cn1jc",
-      "Integrity": "0/73gKQGedVDVYorP6/nTZl8Ha55W9ouJPguLSbr5jY=",
+      "Fingerprint": "2o3k6912gv",
+      "Integrity": "bpaQlhAJnji+b73JFp0JGruOOS4zLNcVCi1hw3gSfDI=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -1354,8 +1354,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "kadedcxsvu",
-      "Integrity": "NNiRiiZ1MdXYbDRpCdlZf0pNiBNGGOsvFvVKkUcbw9M=",
+      "Fingerprint": "cuw8ppw7d1",
+      "Integrity": "RNW3u01kERwhaw9szkSQY7aQec5eN51+LpWXGd6KZV8=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\styles.css"
@@ -2600,6 +2600,27 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\LICENSE.txt"
     },
     {
+      "Identity": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\Livogrøre_logo.png",
+      "SourceId": "LivogRøre",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\",
+      "BasePath": "_content/LivogRøre",
+      "RelativePath": "Livogrøre_logo#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "68co8hfmgt",
+      "Integrity": "GlDdIzvVtqiFBoQVps02irbiCIhnMqR2F5ZwlngVWqw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Livogrøre_logo.png"
+    },
+    {
       "Identity": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\livogrøre.jpg",
       "SourceId": "LivogRøre",
       "SourceType": "Discovered",
@@ -2619,6 +2640,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\livogrøre.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\lor.png",
+      "SourceId": "LivogRøre",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\",
+      "BasePath": "_content/LivogRøre",
+      "RelativePath": "lor#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "5pxgjyq0os",
+      "Integrity": "mWlMRCUKpqtcHDW/AUUCiNxARApHMEbZkyZpACuVWwM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lor.png"
     },
     {
       "Identity": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\scripts\\scripts.js",
@@ -2644,6 +2686,51 @@
   ],
   "Endpoints": [
     {
+      "Route": "css/site.2o3k6912gv.css",
+      "AssetFile": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\css\\site.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2886"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"bpaQlhAJnji+b73JFp0JGruOOS4zLNcVCi1hw3gSfDI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 03 Apr 2025 09:57:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "2o3k6912gv"
+        },
+        {
+          "Name": "label",
+          "Value": "css/site.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-bpaQlhAJnji+b73JFp0JGruOOS4zLNcVCi1hw3gSfDI="
+        }
+      ]
+    },
+    {
       "Route": "css/site.css",
       "AssetFile": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\css\\site.css",
       "Selectors": [],
@@ -2654,7 +2741,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2928"
+          "Value": "2886"
         },
         {
           "Name": "Content-Type",
@@ -2662,11 +2749,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"0/73gKQGedVDVYorP6/nTZl8Ha55W9ouJPguLSbr5jY=\""
+          "Value": "\"bpaQlhAJnji+b73JFp0JGruOOS4zLNcVCi1hw3gSfDI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 28 Feb 2025 11:27:50 GMT"
+          "Value": "Thu, 03 Apr 2025 09:57:39 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2676,52 +2763,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-0/73gKQGedVDVYorP6/nTZl8Ha55W9ouJPguLSbr5jY="
-        }
-      ]
-    },
-    {
-      "Route": "css/site.v1hq6cn1jc.css",
-      "AssetFile": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\css\\site.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2928"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"0/73gKQGedVDVYorP6/nTZl8Ha55W9ouJPguLSbr5jY=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 28 Feb 2025 11:27:50 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "v1hq6cn1jc"
-        },
-        {
-          "Name": "label",
-          "Value": "css/site.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-0/73gKQGedVDVYorP6/nTZl8Ha55W9ouJPguLSbr5jY="
+          "Value": "sha256-bpaQlhAJnji+b73JFp0JGruOOS4zLNcVCi1hw3gSfDI="
         }
       ]
     },
@@ -2736,7 +2778,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "419"
+          "Value": "887"
         },
         {
           "Name": "Content-Type",
@@ -2744,11 +2786,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"NNiRiiZ1MdXYbDRpCdlZf0pNiBNGGOsvFvVKkUcbw9M=\""
+          "Value": "\"RNW3u01kERwhaw9szkSQY7aQec5eN51+LpWXGd6KZV8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 03 Apr 2025 07:12:57 GMT"
+          "Value": "Thu, 03 Apr 2025 08:46:40 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2758,12 +2800,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-NNiRiiZ1MdXYbDRpCdlZf0pNiBNGGOsvFvVKkUcbw9M="
+          "Value": "sha256-RNW3u01kERwhaw9szkSQY7aQec5eN51+LpWXGd6KZV8="
         }
       ]
     },
     {
-      "Route": "css/styles.kadedcxsvu.css",
+      "Route": "css/styles.cuw8ppw7d1.css",
       "AssetFile": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\css\\styles.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -2773,7 +2815,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "419"
+          "Value": "887"
         },
         {
           "Name": "Content-Type",
@@ -2781,11 +2823,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"NNiRiiZ1MdXYbDRpCdlZf0pNiBNGGOsvFvVKkUcbw9M=\""
+          "Value": "\"RNW3u01kERwhaw9szkSQY7aQec5eN51+LpWXGd6KZV8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 03 Apr 2025 07:12:57 GMT"
+          "Value": "Thu, 03 Apr 2025 08:46:40 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2795,7 +2837,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "kadedcxsvu"
+          "Value": "cuw8ppw7d1"
         },
         {
           "Name": "label",
@@ -2803,7 +2845,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-NNiRiiZ1MdXYbDRpCdlZf0pNiBNGGOsvFvVKkUcbw9M="
+          "Value": "sha256-RNW3u01kERwhaw9szkSQY7aQec5eN51+LpWXGd6KZV8="
         }
       ]
     },
@@ -9866,6 +9908,88 @@
       ]
     },
     {
+      "Route": "Livogrøre_logo.68co8hfmgt.png",
+      "AssetFile": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\Livogrøre_logo.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1374337"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"GlDdIzvVtqiFBoQVps02irbiCIhnMqR2F5ZwlngVWqw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 03 Apr 2025 08:18:14 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "68co8hfmgt"
+        },
+        {
+          "Name": "label",
+          "Value": "Livogrøre_logo.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-GlDdIzvVtqiFBoQVps02irbiCIhnMqR2F5ZwlngVWqw="
+        }
+      ]
+    },
+    {
+      "Route": "Livogrøre_logo.png",
+      "AssetFile": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\Livogrøre_logo.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1374337"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"GlDdIzvVtqiFBoQVps02irbiCIhnMqR2F5ZwlngVWqw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 03 Apr 2025 08:18:14 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-GlDdIzvVtqiFBoQVps02irbiCIhnMqR2F5ZwlngVWqw="
+        }
+      ]
+    },
+    {
       "Route": "LivogRøre.bundle.scp.css",
       "AssetFile": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\LivogRøre.bundle.scp.css",
       "Selectors": [],
@@ -10108,6 +10232,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-Ol/m825DU3wykdo+DKnVNEbBIscm9fbg1IyFHs/XP88="
+        }
+      ]
+    },
+    {
+      "Route": "lor.5pxgjyq0os.png",
+      "AssetFile": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\lor.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1382158"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mWlMRCUKpqtcHDW/AUUCiNxARApHMEbZkyZpACuVWwM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 03 Apr 2025 08:26:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "5pxgjyq0os"
+        },
+        {
+          "Name": "label",
+          "Value": "lor.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mWlMRCUKpqtcHDW/AUUCiNxARApHMEbZkyZpACuVWwM="
+        }
+      ]
+    },
+    {
+      "Route": "lor.png",
+      "AssetFile": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\lor.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1382158"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mWlMRCUKpqtcHDW/AUUCiNxARApHMEbZkyZpACuVWwM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 03 Apr 2025 08:26:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mWlMRCUKpqtcHDW/AUUCiNxARApHMEbZkyZpACuVWwM="
         }
       ]
     },

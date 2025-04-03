@@ -20,5 +20,7 @@ namespace LivogRøre.Models
         public string? Description { get; set; }
         
         public string CreatedBy { get; set; } = string.Empty;
+        
+        public string? ImagePath { get; set; } //Legger til seksjon for bilde
     }
 }

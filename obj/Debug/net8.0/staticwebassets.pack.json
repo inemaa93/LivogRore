@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\LivogRøre.v7fa2mhzux.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\Livogrøre_logo.png",
+      "PackagePath": "staticwebassets\\Livogrøre_logo.png"
+    },
+    {
       "Id": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -251,6 +255,10 @@
     {
       "Id": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\livogrøre.jpg",
       "PackagePath": "staticwebassets\\livogrøre.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\lor.png",
+      "PackagePath": "staticwebassets\\lor.png"
     },
     {
       "Id": "C:\\Users\\ninal\\RiderProjects\\LivogRøre\\wwwroot\\scripts\\scripts.js",

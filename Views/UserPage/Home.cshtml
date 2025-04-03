@@ -5,8 +5,19 @@
 }
 
 <h2>Dashbordet til nettsiden</h2>
-<p>Legg til nettside funksjonalitet her!</p>
 
+<p><strong>Rollene dine:</strong></p>
+<ul>
+    @if (User.IsInRole("Admin")) { <li>Admin</li> }
+    @if (User.IsInRole("Company")) { <li>Company</li> }
+    @if (User.IsInRole("User")) { <li>User</li> }
+</ul>
+
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
 
 @if (Model != null && Model.Any())
 {
@@ -30,3 +41,13 @@ else
 {
     <p>Ingen eventer er publisert ennå.</p>
 }
+
+<hr />
+
+@if (User.IsInRole("User") && !User.IsInRole("Company"))
+{
+    <form asp-action="BecomeCompany" asp-controller="Company" method="post">
+        <button type="submit" class="btn btn-warning">Bli en bedrift</button>
+    </form>
+}
+
