@@ -150,3 +150,49 @@ body {
     text-align: center;
   }
 }
+
+/* === STOR TEKST MODUS === */
+.large-text {
+  font-size: 1.5em !important;
+}
+
+/* Knappetekst og lenker blir større */
+.large-text .btn,
+.large-text a {
+  font-size: 1.5em !important;
+  padding: 15px 25px !important;
+}
+
+/* Overskrifter blir større */
+.large-text h1 {
+  font-size: 4rem !important;
+}
+.large-text h2 {
+  font-size: 3rem !important;
+}
+.large-text h3 {
+  font-size: 2.5rem !important;
+}
+.large-text h4,
+.large-text h5,
+.large-text h6 {
+  font-size: 2rem !important;
+}
+
+/* Vanlig avsnittstekst blir større */
+.large-text p,
+.large-text .text-content {
+  font-size: 1.5rem !important;
+  line-height: 1.8;
+}
+
+/* Gjør knapper større */
+.large-text .btn {
+  padding: 16px 32px !important;
+  font-size: 1.6rem !important;
+}
+
+/* Bildereskalering (valgfritt, hvis du vil at bilder også skal økes) */
+.large-text img {
+  max-width: 120%;
+}
