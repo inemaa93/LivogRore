@@ -4,9 +4,9 @@ using LivogRøre.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using LivogRøre.Data;
-using Microsoft.CodeAnalysis;
+using Microsoft.EntityFrameworkCore;
 
-namespace LivogRøre.backend.Controllers;
+namespace LivogRøre.Controllers;
 
 public class HomeController : Controller
 {
@@ -16,10 +16,10 @@ public class HomeController : Controller
     private readonly RoleManager<IdentityRole> _roleManager;
     private readonly ApplicationDbContext _context;
 
-    public HomeController(  //Legger de under hverandre så vi slipper å ha en utrolig lang linje kode x)
-        ILogger<HomeController> logger, 
-        SignInManager<IdentityUser> signInManager, 
-        UserManager<IdentityUser> userManager, 
+    public HomeController(
+        ILogger<HomeController> logger,
+        SignInManager<IdentityUser> signInManager,
+        UserManager<IdentityUser> userManager,
         RoleManager<IdentityRole> roleManager,
         ApplicationDbContext context)
     {
@@ -61,12 +61,54 @@ public class HomeController : Controller
     }
 
     [Authorize(Roles = "Admin,User")]
-    public IActionResult UserHome()
+    public async Task<IActionResult> UserHome()
     {
-        var events = _context.Events
-            .OrderByDescending(e => e.Date)
-            .ToList();
-        return View("~/Views/UserPage/Home.cshtml", events); // Need to spesify path for some reason..
+        try
+        {
+            var identityUser = await _userManager.GetUserAsync(User);
+            if (identityUser == null)
+            {
+                _logger.LogWarning("Identity user not found in UserHome");
+                return RedirectToAction("Index");
+            }
+
+            // Check if user exists in AppUsers table, if not create it
+            var user = await _context.AppUsers
+                .Include(u => u.PreferredLocation)
+                .FirstOrDefaultAsync(u => u.IdentityUserId == identityUser.Id);
+
+            if (user == null)
+            {
+                _logger.LogInformation("Creating new AppUser for identity user {UserId}", identityUser.Id);
+                user = new User
+                {
+                    IdentityUserId = identityUser.Id,
+                    Username = identityUser.UserName ?? string.Empty,
+                    FirstName = string.Empty,
+                    LastName = string.Empty
+                };
+                _context.AppUsers.Add(user);
+                await _context.SaveChangesAsync();
+            }
+
+            // Get events, filtered by location if user has a preference
+            IQueryable<Event> eventsQuery = _context.Events
+                .Include(e => e.Location)
+                .OrderByDescending(e => e.Date);
+
+            if (user.PreferredLocationId != null)
+            {
+                eventsQuery = eventsQuery.Where(e => e.LocationId == user.PreferredLocationId);
+            }
+
+            var events = await eventsQuery.ToListAsync();
+            return View("~/Views/UserPage/Home.cshtml", events);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error in UserHome action");
+            return View("~/Views/UserPage/Home.cshtml", new List<Event>());
+        }
     }
 
     public IActionResult Privacy()

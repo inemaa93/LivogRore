@@ -1,0 +1,54 @@
+@model LivogRøre.Models.User
+
+@{
+    ViewData["Title"] = "Min Profil";
+}
+
+<div class="container">
+    <h2>Min Profil</h2>
+
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success">@TempData["Message"]</div>
+    }
+
+    <form asp-action="UpdateProfile" method="post">
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="IdentityUserId" />
+        <input type="hidden" asp-for="Username" />
+
+        <div class="form-group mb-3">
+            <label asp-for="FirstName" class="control-label">Fornavn</label>
+            <input asp-for="FirstName" class="form-control" />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="LastName" class="control-label">Etternavn</label>
+            <input asp-for="LastName" class="form-control" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="DateOfBirth" class="control-label">Fødselsdato</label>
+            <input asp-for="DateOfBirth" class="form-control" type="date" />
+            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="PreferredLocationId" class="control-label">Foretrukket by</label>
+            <select asp-for="PreferredLocationId" class="form-control" asp-items="ViewBag.Locations">
+                <option value="">-- Velg by --</option>
+            </select>
+            <span asp-validation-for="PreferredLocationId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Lagre endringer</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+} 

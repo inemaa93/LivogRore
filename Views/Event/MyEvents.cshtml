@@ -1,0 +1,60 @@
+@model IEnumerable<LivogRøre.Models.Event>
+@{
+    ViewData["Title"] = "Mine arrangementer";
+}
+
+<div class="container mt-4">
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h1>Mine arrangementer</h1>
+        </div>
+        <div class="col-md-6 text-end">
+            <a asp-action="Create" class="btn btn-primary">Opprett nytt arrangement</a>
+            <a asp-action="Index" class="btn btn-outline-primary ms-2">Se alle arrangementer</a>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Byfilter</h5>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a asp-action="MyEvents" class="btn @(ViewBag.SelectedCity == null ? "btn-primary" : "btn-outline-primary")">Alle byer</a>
+                        @foreach (var city in ViewBag.Cities)
+                        {
+                            <a asp-action="MyEvents" asp-route-city="@city" 
+                               class="btn @(ViewBag.SelectedCity == city ? "btn-primary" : "btn-outline-primary")">
+                                @city
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        @foreach (var evt in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    @if (!string.IsNullOrEmpty(evt.ImagePath))
+                    {
+                        <img src="@evt.ImagePath" class="card-img-top" alt="@evt.Title">
+                    }
+                    <div class="card-body">
+                        <h5 class="card-title">@evt.Title</h5>
+                        <p class="card-text">@evt.Description</p>
+                        <p class="card-text">
+                            <small class="text-muted">
+                                <i class="bi bi-calendar"></i> @evt.Date.ToString("dd.MM.yyyy")<br>
+                                <i class="bi bi-geo-alt"></i> @evt.Location.City
+                            </small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div> 

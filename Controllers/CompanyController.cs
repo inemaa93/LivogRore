@@ -1,11 +1,11 @@
-
-
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using LivogRøre.Data;
 using LivogRøre.Models;
+using LivogRøre.ViewModels;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace LivogRøre.Controllers
@@ -16,56 +16,116 @@ namespace LivogRøre.Controllers
         private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly ILogger<CompanyController> _logger;
 
-        public CompanyController(ApplicationDbContext context, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public CompanyController(
+            ApplicationDbContext context,
+            UserManager<IdentityUser> userManager,
+            SignInManager<IdentityUser> signInManager,
+            ILogger<CompanyController> logger)
         {
             _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
+            _logger = logger;
         }
 
         [Authorize(Roles = "Company,Admin")]
         [HttpGet]
-        public IActionResult CreateEvent()
+        public async Task<IActionResult> CreateEvent()
         {
-            return View();
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                _logger.LogWarning("User not found when trying to access CreateEvent");
+                return NotFound();
+            }
+
+            var locations = await _context.Locations.OrderBy(l => l.County).ThenBy(l => l.Name).ToListAsync();
+
+            var model = new CreateEventViewModel
+            {
+                Locations = locations.Select(l => new SelectListItem
+                {
+                    Value = l.Id.ToString(),
+                    Text = $"{l.Name} ({l.County})"
+                }).ToList()
+            };
+
+            return View(model);
         }
 
         [Authorize(Roles = "Company,Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateEvent(Event model, IFormFile? Image)
+        public async Task<IActionResult> CreateEvent(CreateEventViewModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var user = await _userManager.GetUserAsync(User);
-                model.CreatedBy = user?.Email ?? "Unknown";
-
-                // Handle image upload if present
-                if (Image != null && Image.Length > 0)
+                var locations = await _context.Locations.OrderBy(l => l.County).ThenBy(l => l.Name).ToListAsync();
+                model.Locations = locations.Select(l => new SelectListItem
                 {
-                    var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
-                    Directory.CreateDirectory(uploadsFolder); // ensure the folder exists
+                    Value = l.Id.ToString(),
+                    Text = $"{l.Name} ({l.County})"
+                }).ToList();
 
-                    var uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(Image.FileName);
-                    var filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-                    using (var stream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await Image.CopyToAsync(stream);
-                    }
-
-                    model.ImagePath = "/images/" + uniqueFileName;
-                }
-
-                _context.Events.Add(model);
-                await _context.SaveChangesAsync();
-
-                TempData["Message"] = "Eventet ble opprettet!";
-                return RedirectToAction("CreateEvent");
+                return View(model);
             }
 
-            return View(model);
+            try
+            {
+                var user = await _userManager.GetUserAsync(User);
+                if (user == null)
+                {
+                    _logger.LogWarning("User not found when trying to create event");
+                    return NotFound();
+                }
+
+                var newEvent = new Event
+                {
+                    Title = model.Title,
+                    Date = model.Date,
+                    Description = model.Description,
+                    LocationId = model.LocationId,
+                    CreatedBy = user.Email ?? "Unknown"
+                };
+
+                if (model.Image != null && model.Image.Length > 0)
+                {
+                    var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
+                    Directory.CreateDirectory(uploadsFolder);
+
+                    var uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(model.Image.FileName);
+                    var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await model.Image.CopyToAsync(fileStream);
+                    }
+
+                    newEvent.ImagePath = "/images/" + uniqueFileName;
+                }
+
+                _context.Events.Add(newEvent);
+                await _context.SaveChangesAsync();
+
+                TempData["Message"] = "Arrangementet ble opprettet!";
+                return RedirectToAction("UserHome", "Home");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error creating event");
+
+                var locations = await _context.Locations.OrderBy(l => l.County).ThenBy(l => l.Name).ToListAsync();
+                model.Locations = locations.Select(l => new SelectListItem
+                {
+                    Value = l.Id.ToString(),
+                    Text = $"{l.Name} ({l.County})"
+                }).ToList();
+
+                ModelState.AddModelError("", "Det oppstod en feil ved opprettelse av arrangementet. Vennligst prøv igjen.");
+                return View(model);
+            }
         }
 
         [Authorize]

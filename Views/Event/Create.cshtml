@@ -1,0 +1,53 @@
+@model LivogRøre.ViewModels.CreateEventViewModel
+@{
+    ViewData["Title"] = "Opprett arrangement";
+}
+
+<div class="container mt-4">
+    <h1>Opprett nytt arrangement</h1>
+
+    <form asp-action="Create" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="mb-3">
+            <label asp-for="Title" class="form-label">Tittel</label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Date" class="form-label">Dato</label>
+            <input asp-for="Date" class="form-control" type="date" />
+            <span asp-validation-for="Date" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label">Beskrivelse</label>
+            <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Image" class="form-label">Bilde</label>
+            <input asp-for="Image" class="form-control" type="file" accept="image/*" />
+            <span asp-validation-for="Image" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="LocationId" class="form-label">Lokasjon</label>
+            <select asp-for="LocationId" asp-items="Model.Locations" class="form-select">
+                <option value="">Velg en lokasjon</option>
+            </select>
+            <span asp-validation-for="LocationId" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Opprett arrangement</button>
+            <a asp-action="Index" class="btn btn-secondary">Avbryt</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+} 

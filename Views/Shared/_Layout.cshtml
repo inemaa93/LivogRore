@@ -36,6 +36,16 @@
                         <button id="fontSizeToggle" class="btn btn-outline-primary text-resizable">Større tekst</button>
                     </li>
 
+                    @if (User?.Identity?.IsAuthenticated == true)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark text-resizable" asp-controller="Event" asp-action="Create">Opprett arrangement</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark text-resizable" asp-controller="Event" asp-action="MyEvents">Mine arrangementer</a>
+                        </li>
+                    }
+
                     @if (User.IsInRole("Admin") || User.IsInRole("Company"))
                     {
                         <li class="nav-item">
@@ -43,9 +53,6 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark text-resizable" asp-controller="AdminPage" asp-action="Users">Manage Users</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark text-resizable" asp-controller="Company" asp-action="CreateEvent">Create Event</a>
                         </li>
                     }
                 </ul>

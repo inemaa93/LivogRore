@@ -299,7 +299,6 @@ C:\Users\ninal\RiderProjects\LivogRøre\bin\Debug\net8.0\runtimes\win\lib\net7.0
 C:\Users\ninal\RiderProjects\LivogRøre\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
 C:\Users\inaaa\LivogRore\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\inaaa\LivogRore\bin\Debug\net8.0\appsettings.json
-C:\Users\inaaa\LivogRore\bin\Debug\net8.0\app.db
 C:\Users\inaaa\LivogRore\bin\Debug\net8.0\LivogRøre.staticwebassets.runtime.json
 C:\Users\inaaa\LivogRore\bin\Debug\net8.0\LivogRøre.exe
 C:\Users\inaaa\LivogRore\bin\Debug\net8.0\LivogRøre.deps.json
