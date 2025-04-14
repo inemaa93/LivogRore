@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using LivogRøre.Data;
 using LivogRøre.Models;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace LivogRøre.Controllers;
 
@@ -43,19 +42,7 @@ public class ProfileController : Controller
             await _context.SaveChangesAsync();
         }
 
-        // Get all locations
-        var locations = await _context.Locations
-            .OrderBy(l => l.City)
-            .ThenBy(l => l.Name)
-            .Select(l => new LocationViewModel
-            {
-                Id = l.Id,
-                DisplayText = $"{l.Name}, {l.City}"
-            })
-            .ToListAsync();
-
-        ViewBag.Locations = new SelectList(locations, "Id", "DisplayText");
-
+        ViewBag.Locations = await _context.Locations.ToListAsync();
         return View(user);
     }
 
@@ -63,21 +50,7 @@ public class ProfileController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> UpdateProfile(User model)
     {
-        if (!ModelState.IsValid)
-        {
-            // Re-populate the locations list if validation fails
-            var locations = await _context.Locations
-                .OrderBy(l => l.City)
-                .ThenBy(l => l.Name)
-                .Select(l => new LocationViewModel
-                {
-                    Id = l.Id,
-                    DisplayText = $"{l.Name}, {l.City}"
-                })
-                .ToListAsync();
-            ViewBag.Locations = new SelectList(locations, "Id", "DisplayText");
-            return View("Index", model);
-        }
+        if (!ModelState.IsValid) return View("Index", model);
 
         var user = await _context.AppUsers.FindAsync(model.Id);
         if (user == null) return NotFound();
@@ -91,10 +64,4 @@ public class ProfileController : Controller
         TempData["Message"] = "Profilen din har blitt oppdatert!";
         return RedirectToAction(nameof(Index));
     }
-}
-
-public class LocationViewModel
-{
-    public int Id { get; set; }
-    public string DisplayText { get; set; } = string.Empty;
 } 

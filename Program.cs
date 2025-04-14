@@ -108,41 +108,4 @@ app.MapAreaControllerRoute(
     areaName: "Identity",
     pattern: "Identity/{controller=Home}/{action=Index}/{id?}");
 
-// Seed the database with default locations
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    try
-    {
-        var context = services.GetRequiredService<ApplicationDbContext>();
-        context.Database.Migrate();
-
-        // Check if we have any locations
-        if (!context.Locations.Any())
-        {
-            var defaultLocations = new List<Location>
-            {
-                new Location { Name = "Oslo Senter", City = "Oslo", County = "Oslo" },
-                new Location { Name = "Bergen Senter", City = "Bergen", County = "Vestland" },
-                new Location { Name = "Trondheim Senter", City = "Trondheim", County = "Trøndelag" },
-                new Location { Name = "Stavanger Senter", City = "Stavanger", County = "Rogaland" },
-                new Location { Name = "Tromsø Senter", City = "Tromsø", County = "Troms og Finnmark" },
-                new Location { Name = "Kristiansand Senter", City = "Kristiansand", County = "Agder" },
-                new Location { Name = "Drammen Senter", City = "Drammen", County = "Viken" },
-                new Location { Name = "Bodø Senter", City = "Bodø", County = "Nordland" },
-                new Location { Name = "Ålesund Senter", City = "Ålesund", County = "Møre og Romsdal" },
-                new Location { Name = "Fredrikstad Senter", City = "Fredrikstad", County = "Viken" }
-            };
-
-            context.Locations.AddRange(defaultLocations);
-            context.SaveChanges();
-        }
-    }
-    catch (Exception ex)
-    {
-        var logger = services.GetRequiredService<ILogger<Program>>();
-        logger.LogError(ex, "An error occurred while seeding the database.");
-    }
-}
-
 app.Run();

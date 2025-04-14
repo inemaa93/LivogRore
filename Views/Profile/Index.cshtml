@@ -36,9 +36,9 @@
         </div>
 
         <div class="form-group mb-3">
-            <label asp-for="PreferredLocationId" class="control-label">Foretrukket by</label>
-            <select asp-for="PreferredLocationId" class="form-control" asp-items="ViewBag.Locations">
-                <option value="">-- Velg by --</option>
+            <label asp-for="PreferredLocationId" class="control-label">Foretrukket lokasjon</label>
+            <select asp-for="PreferredLocationId" class="form-control" asp-items="@(new SelectList(ViewBag.Locations, "Id", "Name"))">
+                <option value="">-- Velg lokasjon --</option>
             </select>
             <span asp-validation-for="PreferredLocationId" class="text-danger"></span>
         </div>
