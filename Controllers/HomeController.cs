@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using LivogRøre.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 
 namespace LivogRøre.Controllers;
 
@@ -32,6 +33,16 @@ public class HomeController : Controller
 
     public async Task<IActionResult> Index()
     {
+        // Get available locations for the city selector
+        ViewBag.AvailableLocations = await _context.Locations.OrderBy(l => l.City).ThenBy(l => l.Name).ToListAsync();
+        
+        // Get selected location from cookie
+        var selectedLocationId = Request.Cookies["SelectedLocationId"];
+        if (!string.IsNullOrEmpty(selectedLocationId) && int.TryParse(selectedLocationId, out int locationId))
+        {
+            ViewBag.SelectedLocationId = locationId;
+        }
+
         if (_signInManager.IsSignedIn(User))
         {
             var user = await _userManager.GetUserAsync(User);
@@ -120,5 +131,20 @@ public class HomeController : Controller
     public IActionResult Error()
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    }
+
+    [HttpPost]
+    public IActionResult SetLocation(int locationId)
+    {
+        // Store selected location in cookie
+        Response.Cookies.Append("SelectedLocationId", locationId.ToString(), new CookieOptions
+        {
+            Expires = DateTime.Now.AddDays(30),
+            HttpOnly = true,
+            Secure = true,
+            SameSite = SameSiteMode.Strict
+        });
+
+        return RedirectToAction(nameof(Index));
     }
 }

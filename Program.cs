@@ -80,6 +80,33 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
+// Seed default locations if none exist
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    context.Database.Migrate();
+
+    if (!context.Locations.Any())
+    {
+        var defaultLocations = new List<Location>
+        {
+            new Location { Name = "Oslo Senter", City = "Oslo", County = "Oslo" },
+            new Location { Name = "Bergen Senter", City = "Bergen", County = "Vestland" },
+            new Location { Name = "Trondheim Senter", City = "Trondheim", County = "Trøndelag" },
+            new Location { Name = "Stavanger Senter", City = "Stavanger", County = "Rogaland" },
+            new Location { Name = "Kristiansand Senter", City = "Kristiansand", County = "Agder" },
+            new Location { Name = "Tromsø Senter", City = "Tromsø", County = "Troms og Finnmark" },
+            new Location { Name = "Drammen Senter", City = "Drammen", County = "Viken" },
+            new Location { Name = "Fredrikstad Senter", City = "Fredrikstad", County = "Viken" },
+            new Location { Name = "Sandnes Senter", City = "Sandnes", County = "Rogaland" },
+            new Location { Name = "Sarpsborg Senter", City = "Sarpsborg", County = "Viken" }
+        };
+
+        context.Locations.AddRange(defaultLocations);
+        context.SaveChanges();
+    }
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

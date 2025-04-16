@@ -53,7 +53,20 @@
                         </li>
                     }
                 </ul>
-                <partial name="_LoginPartial" />
+                <div class="d-flex align-items-center">
+                    <form asp-controller="Event" asp-action="Index" method="get" class="me-2">
+                        <select name="locationId" class="form-select text-resizable" onchange="this.form.submit()">
+                            <option value="">Alle byer</option>
+                            @foreach (var location in ViewBag.AvailableLocations ?? new List<Location>())
+                            {
+                                <option value="@location.Id" selected="@(ViewBag.SelectedLocationId == location.Id)">
+                                    @location.City - @location.Name
+                                </option>
+                            }
+                        </select>
+                    </form>
+                    <partial name="_LoginPartial" />
+                </div>
             </div>
         </div>
     </nav>

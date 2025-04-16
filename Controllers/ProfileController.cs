@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using LivogRøre.Data;
 using LivogRøre.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace LivogRøre.Controllers;
 
@@ -42,7 +43,8 @@ public class ProfileController : Controller
             await _context.SaveChangesAsync();
         }
 
-        ViewBag.Locations = await _context.Locations.ToListAsync();
+        var locations = await _context.Locations.ToListAsync();
+        ViewBag.Locations = new SelectList(locations, "Id", "Name");
         return View(user);
     }
 

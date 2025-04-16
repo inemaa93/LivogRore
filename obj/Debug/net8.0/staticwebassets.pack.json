@@ -69,6 +69,14 @@
       "PackagePath": "staticwebassets\\images\\events\\0dbf15fd-cdd8-4425-b277-5ccb135ce31d_Bilde 2.png"
     },
     {
+      "Id": "C:\\Users\\inaaa\\LivogRore\\wwwroot\\images\\events\\1855f39d-2a73-49c1-a5d5-9ead47ac10c7_Bilde 2.png",
+      "PackagePath": "staticwebassets\\images\\events\\1855f39d-2a73-49c1-a5d5-9ead47ac10c7_Bilde 2.png"
+    },
+    {
+      "Id": "C:\\Users\\inaaa\\LivogRore\\wwwroot\\images\\events\\20ed07ba-c42d-4ea9-a9b8-2e7f0875986a_Bilde 1.png",
+      "PackagePath": "staticwebassets\\images\\events\\20ed07ba-c42d-4ea9-a9b8-2e7f0875986a_Bilde 1.png"
+    },
+    {
       "Id": "C:\\Users\\inaaa\\LivogRore\\wwwroot\\images\\events\\24fd5806-83a7-4bdc-acc1-96ff75cf7737_Bilde 1.png",
       "PackagePath": "staticwebassets\\images\\events\\24fd5806-83a7-4bdc-acc1-96ff75cf7737_Bilde 1.png"
     },
@@ -81,12 +89,20 @@
       "PackagePath": "staticwebassets\\images\\events\\a937d5e7-08a3-4e8d-9e4e-2b20a451a5bd_Bilde 3.png"
     },
     {
+      "Id": "C:\\Users\\inaaa\\LivogRore\\wwwroot\\images\\events\\b7487242-75b8-4edb-956a-5b8c613bb87e_Bilde 1.png",
+      "PackagePath": "staticwebassets\\images\\events\\b7487242-75b8-4edb-956a-5b8c613bb87e_Bilde 1.png"
+    },
+    {
       "Id": "C:\\Users\\inaaa\\LivogRore\\wwwroot\\images\\events\\c20ca29d-5289-4811-bf77-e608561b060c_Bilde 1.png",
       "PackagePath": "staticwebassets\\images\\events\\c20ca29d-5289-4811-bf77-e608561b060c_Bilde 1.png"
     },
     {
       "Id": "C:\\Users\\inaaa\\LivogRore\\wwwroot\\images\\events\\dd43736f-2907-4265-be5a-0b129d343e98_Bilde 2.png",
       "PackagePath": "staticwebassets\\images\\events\\dd43736f-2907-4265-be5a-0b129d343e98_Bilde 2.png"
+    },
+    {
+      "Id": "C:\\Users\\inaaa\\LivogRore\\wwwroot\\images\\events\\edfc7422-4fa4-4743-8df5-e9915926bfae_Bilde 3.png",
+      "PackagePath": "staticwebassets\\images\\events\\edfc7422-4fa4-4743-8df5-e9915926bfae_Bilde 3.png"
     },
     {
       "Id": "C:\\Users\\inaaa\\LivogRore\\wwwroot\\js\\fontSizeToggle.js",
