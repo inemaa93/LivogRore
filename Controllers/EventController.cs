@@ -20,27 +20,33 @@ public class EventController : Controller
         _environment = environment;
     }
 
-    public async Task<IActionResult> Index(string? city = null)
+    public async Task<IActionResult> Index(int? locationId)
     {
-        var eventsQuery = _context.Events
-            .Include(e => e.Location)
-            .AsQueryable();
-
-        if (!string.IsNullOrEmpty(city))
+        // Get selected location from cookie if not provided
+        if (!locationId.HasValue)
         {
-            eventsQuery = eventsQuery.Where(e => e.Location.City == city);
+            var selectedLocationId = Request.Cookies["SelectedLocationId"];
+            if (!string.IsNullOrEmpty(selectedLocationId) && int.TryParse(selectedLocationId, out int cookieLocationId))
+            {
+                locationId = cookieLocationId;
+            }
         }
 
-        var events = await eventsQuery.ToListAsync();
-        var cities = await _context.Locations
-            .Select(l => l.City)
-            .Distinct()
-            .OrderBy(c => c)
-            .ToListAsync();
+        // Get available locations for the city selector
+        ViewBag.AvailableLocations = await _context.Locations.OrderBy(l => l.City).ThenBy(l => l.Name).ToListAsync();
+        ViewBag.SelectedLocationId = locationId;
 
-        ViewBag.Cities = cities;
-        ViewBag.SelectedCity = city;
+        var query = _context.Events
+            .Include(e => e.Location)
+            .Include(e => e.User)
+            .AsQueryable();
 
+        if (locationId.HasValue)
+        {
+            query = query.Where(e => e.LocationId == locationId);
+        }
+
+        var events = await query.OrderByDescending(e => e.Date).ToListAsync();
         return View(events);
     }
 
@@ -53,7 +59,7 @@ public class EventController : Controller
                 .Select(l => new SelectListItem
                 {
                     Value = l.Id.ToString(),
-                    Text = $"{l.Name}, {l.City}"
+                    Text = $"{l.Name} {l.City}"
                 })
                 .ToListAsync()
         };
@@ -102,7 +108,7 @@ public class EventController : Controller
             .Select(l => new SelectListItem
             {
                 Value = l.Id.ToString(),
-                Text = $"{l.Name}, {l.City}"
+                Text = $"{l.Name} {l.City}"
             })
             .ToListAsync();
 
@@ -110,7 +116,7 @@ public class EventController : Controller
     }
 
     [Authorize]
-    public async Task<IActionResult> MyEvents(string? city = null)
+    public async Task<IActionResult> MyEvents(int? locationId)
     {
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
         var eventsQuery = _context.Events
@@ -118,20 +124,14 @@ public class EventController : Controller
             .Where(e => e.CreatedBy == userId)
             .AsQueryable();
 
-        if (!string.IsNullOrEmpty(city))
+        if (locationId.HasValue)
         {
-            eventsQuery = eventsQuery.Where(e => e.Location.City == city);
+            eventsQuery = eventsQuery.Where(e => e.LocationId == locationId);
         }
 
-        var events = await eventsQuery.ToListAsync();
-        var cities = await _context.Locations
-            .Select(l => l.City)
-            .Distinct()
-            .OrderBy(c => c)
-            .ToListAsync();
-
-        ViewBag.Cities = cities;
-        ViewBag.SelectedCity = city;
+        var events = await eventsQuery.OrderByDescending(e => e.Date).ToListAsync();
+        ViewBag.AvailableLocations = await _context.Locations.OrderBy(l => l.City).ThenBy(l => l.Name).ToListAsync();
+        ViewBag.SelectedLocationId = locationId;
 
         return View(events);
     }

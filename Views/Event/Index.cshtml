@@ -23,12 +23,12 @@
                 <div class="card-body">
                     <h5 class="card-title">Byfilter</h5>
                     <div class="d-flex flex-wrap gap-2">
-                        <a asp-action="Index" class="btn @(ViewBag.SelectedCity == null ? "btn-primary" : "btn-outline-primary")">Alle byer</a>
-                        @foreach (var city in ViewBag.Cities)
+                        <a asp-action="Index" class="btn @(ViewBag.SelectedLocationId == null ? "btn-primary" : "btn-outline-primary")">Alle byer</a>
+                        @foreach (var location in ViewBag.AvailableLocations ?? new List<Location>())
                         {
-                            <a asp-action="Index" asp-route-city="@city" 
-                               class="btn @(ViewBag.SelectedCity == city ? "btn-primary" : "btn-outline-primary")">
-                                @city
+                            <a asp-action="Index" asp-route-locationId="@location.Id" 
+                               class="btn @(ViewBag.SelectedLocationId == location.Id ? "btn-primary" : "btn-outline-primary")">
+                                @location.City - @location.Name
                             </a>
                         }
                     </div>
@@ -52,7 +52,7 @@
                         <p class="card-text">
                             <small class="text-muted">
                                 <i class="bi bi-calendar"></i> @evt.Date.ToString("dd.MM.yyyy")<br>
-                                <i class="bi bi-geo-alt"></i> @evt.Location.City
+                                <i class="bi bi-geo-alt"></i> @evt.Location.City - @evt.Location.Name
                             </small>
                         </p>
                     </div>
