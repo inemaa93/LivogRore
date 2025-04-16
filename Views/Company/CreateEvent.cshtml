@@ -1,43 +1,70 @@
-@model LivogRøre.Models.Event
+@model LivogRøre.ViewModels.CreateEventViewModel
 
 @{
-    ViewData["Title"] = "Lag ny event";
+    ViewData["Title"] = "Opprett arrangement";
 }
 
-<h2>@ViewData["Title"]</h2>
+<h2>Opprett nytt arrangement</h2>
 
-@if (TempData["Message"] != null)
+@if (!ViewData.ModelState.IsValid)
 {
-    <div class="alert alert-success">@TempData["Message"]</div>
+    <div class="alert alert-danger">
+        <div asp-validation-summary="All" class="text-danger"></div>
+    </div>
 }
 
 <form asp-action="CreateEvent" method="post" enctype="multipart/form-data">
-    <div class="form-group">
-        <label asp-for="Title"></label>
-        <input asp-for="Title" class="form-control" />
+    <div class="form-group mb-3">
+        <label asp-for="Title" class="control-label">Tittel <span class="text-danger">*</span></label>
+        <input asp-for="Title" class="form-control" placeholder="Skriv inn tittel på arrangementet" />
         <span asp-validation-for="Title" class="text-danger"></span>
     </div>
 
-    <div class="form-group mt-3">
-        <label asp-for="Date"></label>
-        <input asp-for="Date" class="form-control" />
+    <div class="form-group mb-3">
+        <label asp-for="Date" class="control-label">Dato <span class="text-danger">*</span></label>
+        <input asp-for="Date" class="form-control" type="date" />
         <span asp-validation-for="Date" class="text-danger"></span>
     </div>
 
-    <div class="form-group mt-3">
-        <label asp-for="Description">Beskrivelse</label>
-        <textarea asp-for="Description" class="form-control"></textarea>
+    <div class="form-group mb-3">
+        <label asp-for="Description" class="control-label">Beskrivelse</label>
+        <textarea asp-for="Description" class="form-control" rows="3" placeholder="Skriv inn beskrivelse av arrangementet"></textarea>
         <span asp-validation-for="Description" class="text-danger"></span>
     </div>
 
-    <div class="form-group mt-3">
-        <label for="Image">Last opp et bilde</label>
-        <input type="file" name="Image" class="form-control" />
+    <div class="form-group mb-3">
+        <label asp-for="LocationId" class="control-label">Lokasjon <span class="text-danger">*</span></label>
+        <select asp-for="LocationId" asp-items="Model.Locations" class="form-control">
+            <option value="">-- Velg lokasjon --</option>
+        </select>
+        <span asp-validation-for="LocationId" class="text-danger"></span>
+        <small class="form-text text-muted">Velg byen/kommunen hvor arrangementet skal finne sted</small>
     </div>
 
-    <button type="submit" class="btn btn-primary mt-3">Lag Event</button>
+    <div class="form-group mb-3">
+        <label asp-for="Image" class="control-label">Bilde</label>
+        <input asp-for="Image" type="file" class="form-control" accept="image/*" />
+        <small class="form-text text-muted">Last opp et bilde for arrangementet (valgfritt)</small>
+        <span asp-validation-for="Image" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Opprett arrangement</button>
+        <a asp-controller="Home" asp-action="UserHome" class="btn btn-secondary">Avbryt</a>
+    </div>
 </form>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function () {
+            $("select[name='LocationId']").change(function () {
+                console.log("Selected location: " + $(this).val());
+            });
+
+            $("form").submit(function () {
+                console.log("Form submitted with LocationId: " + $("select[name='LocationId']").val());
+            });
+        });
+    </script>
 }

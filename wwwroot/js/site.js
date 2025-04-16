@@ -2,15 +2,16 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+console.log('Site.js loaded successfully');
 
-const express = require('express');
-const app = express();
-const PORT = 3000;
-
-app.get('/api/test', (req, res) => {
-    res.json({ message: "API is working!" });
-});
-
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+// Add event listeners when the document is ready
+document.addEventListener('DOMContentLoaded', function() {
+    // Example: Add click handler for a button with id 'testButton'
+    const testButton = document.getElementById('testButton');
+    if (testButton) {
+        testButton.addEventListener('click', function() {
+            console.log('Test button clicked');
+            // Add your button click handling code here
+        });
+    }
 });

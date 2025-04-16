@@ -20,4 +20,11 @@ public class User
 
     [DataType(DataType.Date)] // Force the field to only require date, not including time
     public DateTime? DateOfBirth { get; set; }
+
+    // Location preferences
+    public int? PreferredLocationId { get; set; }
+    public Location? PreferredLocation { get; set; }
+
+    // Identity user reference
+    public string IdentityUserId { get; set; } = string.Empty;
 }

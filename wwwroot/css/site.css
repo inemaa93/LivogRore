@@ -19,6 +19,8 @@ h1 {
 
 html {
   font-size: 14px;
+  position: relative;
+  min-height: 100%;
 }
 
 @media (min-width: 768px) {
@@ -29,11 +31,6 @@ html {
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
 }
 
 body {
@@ -195,4 +192,44 @@ body {
 /* Bildereskalering (valgfritt, hvis du vil at bilder også skal økes) */
 .large-text img {
   max-width: 120%;
+}
+
+/* Footer text size limit */
+.footer-text {
+    font-size: 1rem !important; /* Base font size */
+    max-font-size: 1.2rem !important; /* Maximum font size */
+}
+
+.footer-copyright {
+    font-size: 1.2rem !important; /* Base font size */
+    max-font-size: 1.4rem !important; /* Maximum font size */
+}
+
+.footer-privacy {
+    font-size: 0.9rem !important; /* Base font size */
+    max-font-size: 1rem !important; /* Maximum font size */
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
+}
+
+.text-resizable {
+    transition: font-size 0.3s ease;
+}
+
+.text-resizable.large {
+    font-size: 1.5rem;
+}
+
+.text-resizable.larger {
+    font-size: 2rem;
+}
+
+.text-resizable.largest {
+    font-size: 2.5rem;
 }

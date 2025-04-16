@@ -1,0 +1,100 @@
+@model IEnumerable<LivogRøre.Models.Event>
+
+@{
+    ViewData["Title"] = "Mine Arrangementer";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">@ViewData["Title"]</h1>
+
+    <!-- City Filter Buttons -->
+    <div class="mb-4">
+        <div class="btn-group" role="group">
+            <a href="@Url.Action("MyEvents", new { city = "" })" 
+               class="btn btn-outline-primary @(string.IsNullOrEmpty(ViewBag.SelectedCity) ? "active" : "")">
+                Alle byer
+            </a>
+            <a href="@Url.Action("MyEvents", new { city = "Oslo" })" 
+               class="btn btn-outline-primary @(ViewBag.SelectedCity == "Oslo" ? "active" : "")">
+                Oslo
+            </a>
+            <a href="@Url.Action("MyEvents", new { city = "Bergen" })" 
+               class="btn btn-outline-primary @(ViewBag.SelectedCity == "Bergen" ? "active" : "")">
+                Bergen
+            </a>
+            <a href="@Url.Action("MyEvents", new { city = "Trondheim" })" 
+               class="btn btn-outline-primary @(ViewBag.SelectedCity == "Trondheim" ? "active" : "")">
+                Trondheim
+            </a>
+            <a href="@Url.Action("MyEvents", new { city = "Stavanger" })" 
+               class="btn btn-outline-primary @(ViewBag.SelectedCity == "Stavanger" ? "active" : "")">
+                Stavanger
+            </a>
+            <a href="@Url.Action("MyEvents", new { city = "Drammen" })" 
+               class="btn btn-outline-primary @(ViewBag.SelectedCity == "Drammen" ? "active" : "")">
+                Drammen
+            </a>
+            <a href="@Url.Action("MyEvents", new { city = "Fredrikstad" })" 
+               class="btn btn-outline-primary @(ViewBag.SelectedCity == "Fredrikstad" ? "active" : "")">
+                Fredrikstad
+            </a>
+            <a href="@Url.Action("MyEvents", new { city = "Kristiansand" })" 
+               class="btn btn-outline-primary @(ViewBag.SelectedCity == "Kristiansand" ? "active" : "")">
+                Kristiansand
+            </a>
+            <a href="@Url.Action("MyEvents", new { city = "Sandnes" })" 
+               class="btn btn-outline-primary @(ViewBag.SelectedCity == "Sandnes" ? "active" : "")">
+                Sandnes
+            </a>
+            <a href="@Url.Action("MyEvents", new { city = "Tromsø" })" 
+               class="btn btn-outline-primary @(ViewBag.SelectedCity == "Tromsø" ? "active" : "")">
+                Tromsø
+            </a>
+            <a href="@Url.Action("MyEvents", new { city = "Sarpsborg" })" 
+               class="btn btn-outline-primary @(ViewBag.SelectedCity == "Sarpsborg" ? "active" : "")">
+                Sarpsborg
+            </a>
+        </div>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">
+            Du har ikke opprettet noen arrangementer ennå.
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        @if (!string.IsNullOrEmpty(item.ImagePath))
+                        {
+                            <img src="@item.ImagePath" class="card-img-top" alt="@item.Title" style="height: 200px; object-fit: cover;">
+                        }
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Title</h5>
+                            <p class="card-text">
+                                <strong>Dato:</strong> @item.Date.ToString("dd.MM.yyyy")<br>
+                                <strong>Sted:</strong> @item.Location?.Name, @item.Location?.City<br>
+                                <strong>Beskrivelse:</strong> @(item.Description?.Length > 100 ? item.Description.Substring(0, 100) + "..." : item.Description)
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="d-flex justify-content-between">
+                                <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-primary">
+                                    <i class="bi bi-pencil"></i> Rediger
+                                </a>
+                                <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-danger">
+                                    <i class="bi bi-trash"></i> Slett
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div> 
