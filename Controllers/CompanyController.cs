@@ -67,6 +67,74 @@ namespace LivogRøre.Controllers
 
             return View(model);
         }
+        
+        // GET: EditEvent
+        [Authorize(Roles = "Company,Admin")]
+        [HttpGet]
+        public async Task<IActionResult> EditEvent(int id)
+        {
+            var evt = await _context.Events.FindAsync(id);
+            var user = await _userManager.GetUserAsync(User);
+
+            if (evt == null)
+                return NotFound();
+
+            if (User.IsInRole("Admin") || evt.CreatedBy == user?.Email)
+                return View(evt);
+
+            return Forbid(); // Not authorized
+        }
+
+// POST: EditEvent
+        [Authorize(Roles = "Company,Admin")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditEvent(Event model)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var existing = await _context.Events.FindAsync(model.Id);
+
+            if (existing == null)
+                return NotFound();
+
+            if (!User.IsInRole("Admin") && existing.CreatedBy != user?.Email)
+                return Forbid();
+
+            if (ModelState.IsValid)
+            {
+                existing.Title = model.Title;
+                existing.Date = model.Date;
+                existing.Description = model.Description;
+                await _context.SaveChangesAsync();
+
+                TempData["Message"] = "Eventet ble oppdatert!";
+                return RedirectToAction("UserHome", "Home");
+            }
+
+            return View(model);
+        }
+
+// GET: DeleteEvent
+        [Authorize(Roles = "Company,Admin")]
+        [HttpGet]
+        public async Task<IActionResult> DeleteEvent(int id)
+        {
+            var evt = await _context.Events.FindAsync(id);
+            var user = await _userManager.GetUserAsync(User);
+
+            if (evt == null)
+                return NotFound();
+
+            if (!User.IsInRole("Admin") && evt.CreatedBy != user?.Email)
+                return Forbid();
+
+            _context.Events.Remove(evt);
+            await _context.SaveChangesAsync();
+
+            TempData["Message"] = "Eventet ble slettet.";
+            return RedirectToAction("UserHome", "Home");
+        }
+
 
         [Authorize]
         [HttpPost]

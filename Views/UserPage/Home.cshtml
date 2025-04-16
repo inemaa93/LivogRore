@@ -34,6 +34,16 @@
                             <p class="mt-2">@e.Description</p>
                         }
                         <span class="text-muted">Opprettet av: @e.CreatedBy</span>
+
+                        @* Show edit/delete if the current user is the creator or an admin *@
+                        @if (User.IsInRole("Admin") || User.Identity?.Name == e.CreatedBy)
+                        {
+                            <div class="mt-3">
+                                <a asp-controller="Company" asp-action="EditEvent" asp-route-id="@e.Id" class="btn btn-sm btn-outline-primary me-2">Rediger</a>
+                                <a asp-controller="Company" asp-action="DeleteEvent" asp-route-id="@e.Id" class="btn btn-sm btn-outline-danger"
+                                   onclick="return confirm('Er du sikker på at du vil slette dette eventet?');">Slett</a>
+                            </div>
+                        }
                     </div>
 
                     @if (!string.IsNullOrWhiteSpace(e.ImagePath))
@@ -60,5 +70,3 @@ else
         <button type="submit" class="btn btn-warning">Bli en bedrift</button>
     </form>
 }
-
-
