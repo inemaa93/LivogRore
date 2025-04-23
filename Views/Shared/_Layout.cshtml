@@ -7,12 +7,14 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/LivogRøre.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body class="text-resizable">
 <header>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
         <div class="container-fluid">
             <a class="navbar-brand text-resizable" asp-area="" asp-controller="Home" asp-action="Index">LivogRøre</a>
+            <button id="fontSizeToggle" class="btn btn-outline-primary text-resizable me-2">Større tekst</button>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -31,10 +33,15 @@
                         <a class="nav-link text-dark text-resizable" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                     </li>
 
-                    <!-- Knapp for å endre skriftstørrelse -->
-                    <li class="nav-item">
-                        <button id="fontSizeToggle" class="btn btn-outline-primary text-resizable">Større tekst</button>
-                    </li>
+                    @if (User?.Identity?.IsAuthenticated == true)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark text-resizable" asp-controller="Event" asp-action="Create">Opprett arrangement</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark text-resizable" asp-controller="Event" asp-action="MyEvents">Mine arrangementer</a>
+                        </li>
+                    }
 
                     @if (User.IsInRole("Admin") || User.IsInRole("Company"))
                     {
@@ -42,14 +49,24 @@
                             <a class="nav-link text-dark text-resizable" asp-controller="AdminPage" asp-action="Admin">Admin</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark text-resizable" asp-controller="AdminPage" asp-action="Users">Manage Users</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark text-resizable" asp-controller="Company" asp-action="CreateEvent">Create Event</a>
+                            <a class="nav-link text-dark text-dark text-resizable" asp-controller="AdminPage" asp-action="Users">Manage Users</a>
                         </li>
                     }
                 </ul>
-                <partial name="_LoginPartial" />
+                <div class="d-flex align-items-center">
+                    <form asp-controller="Event" asp-action="Index" method="get" class="me-2">
+                        <select name="locationId" class="form-select text-resizable" onchange="this.form.submit()">
+                            <option value="">Alle byer</option>
+                            @foreach (var location in ViewBag.AvailableLocations ?? new List<Location>())
+                            {
+                                <option value="@location.Id" selected="@(ViewBag.SelectedLocationId == location.Id)">
+                                    @location.City - @location.Name
+                                </option>
+                            }
+                        </select>
+                    </form>
+                    <partial name="_LoginPartial" />
+                </div>
             </div>
         </div>
     </nav>
@@ -60,9 +77,10 @@
     </main>
 </div>
 
-<footer class="border-top footer text-muted text-resizable">
+<footer class="border-top footer text-muted">
     <div class="container">
-        &copy; 2025 - LivogRøre - <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-resizable">Privacy</a>
+        <span class="footer-copyright">&copy; 2025 - LivogRøre - </span>
+        <a asp-area="" asp-controller="Home" asp-action="Privacy" class="footer-privacy">Privacy</a>
     </div>
 </footer>
 

@@ -1,49 +1,51 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using LivogRøre.Data;
+using LivogRøre.Models;
 
 namespace LivogRøre.Controllers
 {
     [Authorize(Roles = "Admin")]  //Restricts this page to Admin only (Figure out how to make it invis for users)
-    public class AdminPageController : Controller
+    public class AdminController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly ApplicationDbContext _context;
 
-        public AdminPageController(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+        public AdminController(ApplicationDbContext context)
         {
-            _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager)); // Prevents null error
-            _roleManager = roleManager ?? throw new ArgumentNullException(nameof(roleManager)); // Prevents null error
-        }
-        
-        public IActionResult Admin()
-        {
-            return View();
+            _context = context;
         }
 
-        public IActionResult Users()
+        public async Task<IActionResult> Index()
         {
-            var users = _userManager.Users.ToList();
-            return View(users);
+            var locations = await _context.Locations.ToListAsync();
+            return View(locations);
         }
 
-        public async Task<IActionResult> AssignUserRole(string email)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateLocation(Location location)
         {
-            var user = await _userManager.FindByEmailAsync(email);
-            if (user != null && !await _userManager.IsInRoleAsync(user, "User"))
+            if (ModelState.IsValid)
             {
-                await _userManager.AddToRoleAsync(user, "User");
-                TempData["Message"] = $" User {email} has been assigned to user role";
+                _context.Add(location);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
-            else
+            return View("Index", await _context.Locations.ToListAsync());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteLocation(int id)
+        {
+            var location = await _context.Locations.FindAsync(id);
+            if (location != null)
             {
-                TempData["Message"] = $" User {email} was not found";
+                _context.Locations.Remove(location);
+                await _context.SaveChangesAsync();
             }
-            
-            return RedirectToAction("Users");
+            return RedirectToAction(nameof(Index));
         }
     }
 }

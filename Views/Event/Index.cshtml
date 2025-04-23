@@ -1,0 +1,63 @@
+@model IEnumerable<LivogRøre.Models.Event>
+@{
+    ViewData["Title"] = "Arrangementer";
+}
+
+<div class="container mt-4">
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h1>Arrangementer</h1>
+        </div>
+        <div class="col-md-6 text-end">
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <a asp-action="Create" class="btn btn-primary">Opprett arrangement</a>
+                <a asp-action="MyEvents" class="btn btn-outline-primary ms-2">Mine arrangementer</a>
+            }
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Byfilter</h5>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a asp-action="Index" class="btn @(ViewBag.SelectedLocationId == null ? "btn-primary" : "btn-outline-primary")">Alle byer</a>
+                        @foreach (var location in ViewBag.AvailableLocations ?? new List<Location>())
+                        {
+                            <a asp-action="Index" asp-route-locationId="@location.Id" 
+                               class="btn @(ViewBag.SelectedLocationId == location.Id ? "btn-primary" : "btn-outline-primary")">
+                                @location.City - @location.Name
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        @foreach (var evt in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    @if (!string.IsNullOrEmpty(evt.ImagePath))
+                    {
+                        <img src="@evt.ImagePath" class="card-img-top" alt="@evt.Title">
+                    }
+                    <div class="card-body">
+                        <h5 class="card-title">@evt.Title</h5>
+                        <p class="card-text">@evt.Description</p>
+                        <p class="card-text">
+                            <small class="text-muted">
+                                <i class="bi bi-calendar"></i> @evt.Date.ToString("dd.MM.yyyy")<br>
+                                <i class="bi bi-geo-alt"></i> @evt.Location.City - @evt.Location.Name
+                            </small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div> 

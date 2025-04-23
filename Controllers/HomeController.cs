@@ -4,9 +4,10 @@ using LivogRøre.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using LivogRøre.Data;
-using Microsoft.CodeAnalysis;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 
-namespace LivogRøre.backend.Controllers;
+namespace LivogRøre.Controllers;
 
 public class HomeController : Controller
 {
@@ -16,10 +17,10 @@ public class HomeController : Controller
     private readonly RoleManager<IdentityRole> _roleManager;
     private readonly ApplicationDbContext _context;
 
-    public HomeController(  //Legger de under hverandre så vi slipper å ha en utrolig lang linje kode x)
-        ILogger<HomeController> logger, 
-        SignInManager<IdentityUser> signInManager, 
-        UserManager<IdentityUser> userManager, 
+    public HomeController(
+        ILogger<HomeController> logger,
+        SignInManager<IdentityUser> signInManager,
+        UserManager<IdentityUser> userManager,
         RoleManager<IdentityRole> roleManager,
         ApplicationDbContext context)
     {
@@ -32,6 +33,16 @@ public class HomeController : Controller
 
     public async Task<IActionResult> Index()
     {
+        // Get available locations for the city selector
+        ViewBag.AvailableLocations = await _context.Locations.OrderBy(l => l.City).ThenBy(l => l.Name).ToListAsync();
+        
+        // Get selected location from cookie
+        var selectedLocationId = Request.Cookies["SelectedLocationId"];
+        if (!string.IsNullOrEmpty(selectedLocationId) && int.TryParse(selectedLocationId, out int locationId))
+        {
+            ViewBag.SelectedLocationId = locationId;
+        }
+
         if (_signInManager.IsSignedIn(User))
         {
             var user = await _userManager.GetUserAsync(User);
@@ -61,12 +72,54 @@ public class HomeController : Controller
     }
 
     [Authorize(Roles = "Admin,User")]
-    public IActionResult UserHome()
+    public async Task<IActionResult> UserHome()
     {
-        var events = _context.Events
-            .OrderByDescending(e => e.Date)
-            .ToList();
-        return View("~/Views/UserPage/Home.cshtml", events); // Need to spesify path for some reason..
+        try
+        {
+            var identityUser = await _userManager.GetUserAsync(User);
+            if (identityUser == null)
+            {
+                _logger.LogWarning("Identity user not found in UserHome");
+                return RedirectToAction("Index");
+            }
+
+            // Check if user exists in AppUsers table, if not create it
+            var user = await _context.AppUsers
+                .Include(u => u.PreferredLocation)
+                .FirstOrDefaultAsync(u => u.IdentityUserId == identityUser.Id);
+
+            if (user == null)
+            {
+                _logger.LogInformation("Creating new AppUser for identity user {UserId}", identityUser.Id);
+                user = new User
+                {
+                    IdentityUserId = identityUser.Id,
+                    Username = identityUser.UserName ?? string.Empty,
+                    FirstName = string.Empty,
+                    LastName = string.Empty
+                };
+                _context.AppUsers.Add(user);
+                await _context.SaveChangesAsync();
+            }
+
+            // Get events, filtered by location if user has a preference
+            IQueryable<Event> eventsQuery = _context.Events
+                .Include(e => e.Location)
+                .OrderByDescending(e => e.Date);
+
+            if (user.PreferredLocationId != null)
+            {
+                eventsQuery = eventsQuery.Where(e => e.LocationId == user.PreferredLocationId);
+            }
+
+            var events = await eventsQuery.ToListAsync();
+            return View("~/Views/UserPage/Home.cshtml", events);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error in UserHome action");
+            return View("~/Views/UserPage/Home.cshtml", new List<Event>());
+        }
     }
 
     public IActionResult Privacy()
@@ -78,5 +131,20 @@ public class HomeController : Controller
     public IActionResult Error()
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    }
+
+    [HttpPost]
+    public IActionResult SetLocation(int locationId)
+    {
+        // Store selected location in cookie
+        Response.Cookies.Append("SelectedLocationId", locationId.ToString(), new CookieOptions
+        {
+            Expires = DateTime.Now.AddDays(30),
+            HttpOnly = true,
+            Secure = true,
+            SameSite = SameSiteMode.Strict
+        });
+
+        return RedirectToAction(nameof(Index));
     }
 }

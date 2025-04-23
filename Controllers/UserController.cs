@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LivogRøre.Controllers
 {
-    [Authorize(Roles = "Admin")]  //Restricts this page to Admin only
+    [Authorize(Roles = "Admin")]  //Kun Admin rollen kan se
     public class UserController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
