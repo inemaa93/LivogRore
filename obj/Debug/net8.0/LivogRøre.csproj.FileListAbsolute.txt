@@ -887,3 +887,6 @@ C:\Users\ninal\RiderProjects\LivogRore\obj\Debug\net8.0\refint\LivogRøre.dll
 C:\Users\ninal\RiderProjects\LivogRore\obj\Debug\net8.0\LivogRøre.pdb
 C:\Users\ninal\RiderProjects\LivogRore\obj\Debug\net8.0\LivogRøre.genruntimeconfig.cache
 C:\Users\ninal\RiderProjects\LivogRore\obj\Debug\net8.0\ref\LivogRøre.dll
+C:\Users\inaaa\LivogRore\bin\Debug\net8.0\LivogRøre.staticwebassets.endpoints.json
+C:\Users\inaaa\LivogRore\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\inaaa\LivogRore\obj\Debug\net8.0\staticwebassets\msbuild.LivogRøre.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
