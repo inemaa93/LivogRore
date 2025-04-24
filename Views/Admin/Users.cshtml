@@ -1,0 +1,35 @@
+@{
+    ViewData["Title"] = "User Management";
+}
+
+<h1>Bruker redigering</h1>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-info">@TempData["Message"]</div>
+}
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>E-mail</th>
+        <th>Brukernavn</th>
+        <th>Slett bruker</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.Email</td>
+            <td>@user.UserName</td>
+            <td>
+                <form asp-controller="Admin" asp-action="DeleteUser" asp-route-id="@user.Id" method="post" onsubmit="return confirm('Er du sikker på at du vil slette denne brukeren?');">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-danger">Slett bruker</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
