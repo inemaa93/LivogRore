@@ -1,0 +1,2 @@
+﻿Denne mappen inneholder et uferdig forsøk på å utvikle en tilhørende mobilapplikasjon som skulle høre til nettsiden.
+På grunn av tidsbesvær så ble aldri denne applikasjonen ferdigstilt, og er ikke inkludert i vurderingsgrunnlaget.
