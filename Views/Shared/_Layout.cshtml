@@ -46,25 +46,14 @@
                     @if (User.IsInRole("Admin"))
                     {
                         <li class="nav-item">
-                            <a class="nav-link text-dark text-resizable" asp-controller="Admin" asp-action="Admin">Admin</a>
+                            <a class="nav-link text-dark text-resizable" asp-controller="Admin" asp-action="Admin">Administrasjon</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark text-dark text-resizable" asp-controller="Admin" asp-action="Users">Manage Users</a>
+                            <a class="nav-link text-dark text-dark text-resizable" asp-controller="Admin" asp-action="Users">Behandle brukere</a>
                         </li>
                     }
                 </ul>
                 <div class="d-flex align-items-center">
-                    <form asp-controller="Event" asp-action="Index" method="get" class="me-2">
-                        <select name="locationId" class="form-select text-resizable" onchange="this.form.submit()">
-                            <option value="">Alle byer</option>
-                            @foreach (var location in ViewBag.AvailableLocations ?? new List<Location>())
-                            {
-                                <option value="@location.Id" selected="@(ViewBag.SelectedLocationId == location.Id)">
-                                    @location.City - @location.Name
-                                </option>
-                            }
-                        </select>
-                    </form>
                     <partial name="_LoginPartial" />
                 </div>
             </div>
