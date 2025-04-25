@@ -6,8 +6,18 @@
 
 <h2>@ViewData["Title"]</h2>
 
-<form asp-action="EditEvent" method="post">
+@{
+var eventId = Model?.Id ?? 0;
+}
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form method="post" asp-action="EditEvent" asp-controller="Company" asp-route-id="@eventId">
+    @Html.AntiForgeryToken()
     <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="LocationId" />
+    <input type="hidden" asp-for="CreatedBy" />
+    <input type="hidden" asp-for="ImagePath" />
 
     <div class="form-group">
         <label asp-for="Title"></label>
@@ -17,7 +27,7 @@
 
     <div class="form-group mt-3">
         <label asp-for="Date"></label>
-        <input asp-for="Date" class="form-control" />
+        <input asp-for="Date" class="form-control" type="date" />
         <span asp-validation-for="Date" class="text-danger"></span>
     </div>
 
@@ -30,4 +40,8 @@
     <button type="submit" class="btn btn-success mt-3">Lagre endringer</button>
     <a asp-action="UserHome" asp-controller="Home" class="btn btn-secondary mt-3">Avbryt</a>
 </form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
 

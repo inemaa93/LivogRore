@@ -26,12 +26,11 @@ namespace LivogRøre.Models
         [Display(Name = "Bilde")]
         public string? ImagePath { get; set; }
 
-        [Required]
         [Display(Name = "Sted")]
-        public int LocationId { get; set; }
+        public int? LocationId { get; set; }
 
         [ForeignKey("LocationId")]
-        public Location Location { get; set; } = null!;
+        public Location? Location { get; set; }
 
         [Required]
         public string CreatedBy { get; set; } = string.Empty;

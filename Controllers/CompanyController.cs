@@ -7,6 +7,7 @@ using LivogRøre.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace LivogRøre.Controllers
 {
@@ -127,7 +128,7 @@ namespace LivogRøre.Controllers
                 return View(model);
             }
         }
-        
+
         // GET: EditEvent
         [Authorize(Roles = "Company,Admin")]
         [HttpGet]
@@ -140,41 +141,82 @@ namespace LivogRøre.Controllers
                 return NotFound();
 
             if (User.IsInRole("Admin") || evt.CreatedBy == user?.Email)
-                return View(evt);
+            {
+                return View("EditEvent", evt);
+            }
 
             return Forbid();
         }
 
-// POST: EditEvent
+        // POST: EditEvent
         [Authorize(Roles = "Company,Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditEvent(Event model)
+        public async Task<IActionResult> EditEvent(int id, Event model)
         {
             var user = await _userManager.GetUserAsync(User);
-            var existing = await _context.Events.FindAsync(model.Id);
+
+            if (model == null)
+            {
+                _logger.LogWarning("EditEvent called with null model");
+                return BadRequest("Model is null");
+            }
+
+            // Get the existing event from the database
+            var existing = await _context.Events.FindAsync(id);
 
             if (existing == null)
-                return NotFound();
+            {
+                _logger.LogWarning($"No event found with ID: {id}");
+                return NotFound($"No event found with ID: {id}");
+            }
 
             if (!User.IsInRole("Admin") && existing.CreatedBy != user?.Email)
                 return Forbid();
 
-            if (ModelState.IsValid)
+            // Logging ModelState
+            if (!ModelState.IsValid)
             {
-                existing.Title = model.Title;
-                existing.Date = model.Date;
-                existing.Description = model.Description;
-                await _context.SaveChangesAsync();
+                _logger.LogWarning("ModelState is invalid for EditEvent");
+                foreach (var kvp in ModelState)
+                {
+                    foreach (var error in kvp.Value.Errors)
+                    {
+                        _logger.LogWarning($"ModelState error for {kvp.Key}: {error.ErrorMessage}");
+                    }
+                }
+                return View("EditEvent", model);
+            }
+            
+            _logger.LogInformation($"Updating event {id}: Title={model.Title}, Date={model.Date}, Description={model.Description}");
 
+            // Update event properties
+            existing.Title = model.Title;
+            existing.Date = model.Date;
+            existing.Description = model.Description;
+
+            try
+            {
+                _context.Entry(existing).State = EntityState.Modified;
+                
+                // Save changes to the database
+                var result = await _context.SaveChangesAsync();
+                
+                _logger.LogInformation($"Event {id} updated successfully. Rows affected: {result}");
+                
                 TempData["Message"] = "Eventet ble oppdatert!";
                 return RedirectToAction("UserHome", "Home");
             }
-
-            return View(model);
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error saving event changes");
+                ModelState.AddModelError("", "Det oppstod en feil ved lagring av endringene. Vennligst prøv igjen.");
+                return View("EditEvent", model);
+            }
         }
+        
 
-// GET: DeleteEvent
+        // GET: DeleteEvent
         [Authorize(Roles = "Company,Admin")]
         [HttpGet]
         public async Task<IActionResult> DeleteEvent(int id)
@@ -194,7 +236,6 @@ namespace LivogRøre.Controllers
             TempData["Message"] = "Eventet ble slettet.";
             return RedirectToAction("UserHome", "Home");
         }
-
 
         [Authorize]
         [HttpPost]
